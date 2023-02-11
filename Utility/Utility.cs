@@ -3,6 +3,12 @@ using System.Text;
 
 public class Utility
 {
+    public static IConfiguration GetConfig()
+    {
+        return new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+    }
     public static async Task<string> ReplyMessageAsync(string ReplyToken, string Message, string ChannelAccessToken)
     {
         HttpClient client;
