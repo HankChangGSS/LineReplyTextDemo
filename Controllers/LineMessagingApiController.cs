@@ -12,6 +12,8 @@ namespace LineBot
         [HttpPost]
         public async Task<IActionResult> Post(WebhookRequestBodyDto body)
         {
+            if (body.Events.Count == 0) return Ok();    //try to pass Webhook URL Verify
+
             Utility.ReplyMessageAsync(body.Events[0].ReplyToken, body.Events[0].Message.Text + " Demo OK", channelAccessToken);
             return Ok(body);
         }
